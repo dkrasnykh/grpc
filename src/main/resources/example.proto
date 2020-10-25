@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "org.example.grpc";
+
+message Greeting {
+  string first_name = 1;
+}
+
+message GreetingRequest {
+  Greeting greeting = 1;
+}
+
+message GreetingResponse {
+  string result = 1;
+}
+
+service GreetService {
+  rpc Greet(GreetingRequest) returns (GreetingResponse) {};
+  rpc GreetManyTimes(GreetingRequest) returns (stream GreetingResponse){}
+  rpc LongGreet(stream GreetingRequest) returns (GreetingResponse){}
+  rpc GreetEveryone(stream GreetingRequest) returns (stream GreetingResponse){}
+}
